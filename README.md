@@ -274,7 +274,6 @@ In particular:
 
 This project is currently for development and educational purposes.
 
-A formal open-source license can be added when the project is ready for public contributions.
 
 ## Author
 
