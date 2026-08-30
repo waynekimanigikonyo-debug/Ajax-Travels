@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('ajaxUser');
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
-
-  const handleLogout = () => {
-    localStorage.removeItem('ajaxUser');
-    setUser(null);
-    navigate('/');
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
@@ -70,6 +70,10 @@ export default function Navbar() {
               >
                 Dashboard
               </Link>
+
+              <span className="text-sm text-gray-500">
+                {user.displayName || user.email}
+              </span>
 
               <button
                 onClick={handleLogout}
