@@ -63,7 +63,10 @@ const fallbackDestinations = [
 async function api(path, options = {}) {
   const response = await fetch(path, options);
 
-  const data = await response.json().catch(() => ({}));
+  // Throw an error if JSON parsing fails to trigger the catch blocks
+  const data = await response.json().catch(() => {
+    throw new Error('Invalid JSON response. API likely unavailable.');
+  });
 
   if (!response.ok) {
     throw new Error(
