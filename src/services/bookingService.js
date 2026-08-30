@@ -5,6 +5,8 @@ import {
   query,
   serverTimestamp,
   where,
+  doc,
+  deleteDoc,
 } from 'firebase/firestore';
 
 import { db } from '../config/firebase';
@@ -54,4 +56,10 @@ export const subscribeToUserBookings = (userId, callback) => {
       callback([]);
     }
   );
+};
+
+export const deleteBooking = async (bookingId) => {
+  if (!bookingId) return;
+  const bookingRef = doc(db, 'bookings', bookingId);
+  return deleteDoc(bookingRef);
 };
