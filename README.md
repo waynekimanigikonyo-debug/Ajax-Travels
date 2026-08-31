@@ -61,7 +61,7 @@ npm -v
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/ajax-travels.git
+git clone https://github.com/waynekimaigikonyo-debug/ajax-travels.git
 ```
 
 Move into the project directory:
